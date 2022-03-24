@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <windows.h>
+#include <vector>
 
 using namespace std;
 
@@ -37,10 +38,14 @@ public:
     }
 };
 
-int main()
-{
+vector<Flower*> flowerbase;
+
+void addFlower() {
     int s, b;
-    string flower = "Sunflower";
+    string flower;
+    
+    cout << "What flower do you want to add? -> ";
+    cin >> flower;
 
     cout << "How long does " << flower << " sprout? -> ";
     cin >> s;
@@ -48,15 +53,26 @@ int main()
     cout << "How long does " << flower << " bloom? -> ";
     cin >> b;
 
-    Flower Sunflower(flower, s, b);
+    Flower* obj = new Flower(flower, s, b);
+    flowerbase.push_back(obj);
+}
 
+void grow(Flower flower) {
     for (int i = 1; i < 60; i++) {
         Sleep(1000);
         cout << "\nDay " << i << "... ";
-        if (i == Sunflower.sprouting_time)
-            Sunflower.Sprout();
-        if (i == Sunflower.blooming_time)
-            Sunflower.Bloom();
+        if (i == flower.sprouting_time)
+            flower.Sprout();
+        if (i == flower.blooming_time)
+            flower.Bloom();
     }
+}
 
+int main()
+{
+    addFlower();
+    cout <<  (*flowerbase[0]).name;
+    grow(*flowerbase[0]);
+
+    return 0;
 }
