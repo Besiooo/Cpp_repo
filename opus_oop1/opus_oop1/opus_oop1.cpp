@@ -122,6 +122,11 @@ void loadMatrix() {
     }
 }
 
+void exit() {
+    for (int i = 0; i < flowerbase.size(); i++)
+        delete flowerbase[i];
+}
+
 int main()
 {
     srand(time(NULL));
@@ -140,10 +145,11 @@ int main()
     cin >> decision;
 
     switch (decision) {
-        case '1': loadMatrix(); break;
-        case '2': grow(); break;
-        default: break;
+    case '1': loadMatrix(); break;
+    case '2': grow(); break;
+    default: break;
     }
 
+    exit();
     return 0;
 }
